@@ -1,0 +1,6 @@
+name: WebConsole
+description: Gain real-time visibility into server packet traffic.
+version: 1.0.0
+author: Draglis
+api: 1.0.14
+main: net.draglis.WebConsole

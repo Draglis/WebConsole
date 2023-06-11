@@ -1,1 +1,8 @@
+# Configuration file for WebConsole plugin
+
+# The port of the website
 port: 80
+remove-packet:
+  - MoveEntityAbsolutePacket
+  - MoveEntityDeltaPacket
+  - MovePlayerPacket

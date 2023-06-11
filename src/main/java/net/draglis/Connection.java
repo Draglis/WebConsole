@@ -1,4 +1,4 @@
-package net.draglis.webconsole;
+package net.draglis;
 
 import java.io.*;
 import java.net.Socket;
@@ -101,4 +101,5 @@ public class Connection implements Runnable {
             ex.printStackTrace();
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package net.draglis.webconsole.listener;
+package net.draglis.listener;
 
 import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
@@ -6,7 +6,7 @@ import cn.nukkit.event.Listener;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.event.server.DataPacketSendEvent;
 import cn.nukkit.network.protocol.*;
-import net.draglis.Sergium;
+import net.draglis.WebConsole;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -23,6 +23,10 @@ public class PacketListener implements Listener {
         DataPacket packet = event.getPacket();
         Player player = event.getPlayer();
         String packetData;
+
+        if (WebConsole.getInstance().getConfig().getStringList("remove-packet").stream().anyMatch(name -> packet.getClass().getSimpleName().equalsIgnoreCase(name))) {
+            return;
+        }
 
         if (
                 packet instanceof AddBehaviorTreePacket ||
@@ -186,7 +190,7 @@ public class PacketListener implements Listener {
                 packet.packetId() + " | " +
                 packetData + "\n";
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(Sergium.getInstance().getDataFolder().getPath() + "/WebConsole/content.txt", true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(WebConsole.getInstance().getDataFolder().getPath() + "/WebConsole/content.txt", true));
         writer.append(str);
         writer.close();
     }
@@ -196,6 +200,10 @@ public class PacketListener implements Listener {
         DataPacket packet = event.getPacket();
         Player player = event.getPlayer();
         String packetData;
+
+        if (WebConsole.getInstance().getConfig().getStringList("remove-packet").stream().anyMatch(name -> packet.getClass().getSimpleName().equalsIgnoreCase(name))) {
+            return;
+        }
 
         if (
                 packet instanceof AddBehaviorTreePacket ||
@@ -359,7 +367,7 @@ public class PacketListener implements Listener {
                         packet.packetId() + " | " +
                         packetData + "\n";
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter(Sergium.getInstance().getDataFolder().getPath() + "/WebConsole/content.txt", true));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(WebConsole.getInstance().getDataFolder().getPath() + "/WebConsole/content.txt", true));
         writer.append(str);
         writer.close();
     }

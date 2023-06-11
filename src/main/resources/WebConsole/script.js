@@ -1,26 +1,20 @@
 function loadContentFile() {
   var contentDiv = document.getElementById("content");
-  if (typeof contentDiv.contentDocument !== "undefined") {
-    contentDiv.innerHTML =
-      '<object type="type/html" data="content.txt"></object>';
-  } else {
-    fetch("content.txt")
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error("Content file not found");
-        }
-      })
-      .then((text) => {
-        contentDiv.innerHTML = formatLogLines(text);
-        clearInterval(timer); // Disable the timer
-      })
-      .catch(error => {
-        contentDiv.textContent = "This extension module is not supported";
-        clearInterval(timer); // Disable the timer
-      });
-  }
+
+  fetch("content.txt", { cache: "no-store" })
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error("Content file not found");
+      }
+    })
+    .then((text) => {
+      contentDiv.innerHTML = formatLogLines(text);
+    })
+    .catch((error) => {
+      contentDiv.textContent = "Content file not found";
+    });
 }
 
 function formatLogLines(text) {
