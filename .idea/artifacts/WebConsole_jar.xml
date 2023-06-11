@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="WebConsole:jar">
+    <output-path>$PROJECT_DIR$/../../dev/server WebConsole/plugins</output-path>
+    <root id="archive" name="WebConsole.jar">
+      <element id="module-output" name="WebConsole" />
+    </root>
+  </artifact>
+</component>

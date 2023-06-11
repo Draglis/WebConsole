@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+}
+
+.console {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #333;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.black-screen {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 10;
+  background-color: #000;
+  overflow: auto;
+  padding: 0 20px;
+  color: #fff;
+  font-family: Consolas, monospace;
+  font-size: 18px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.log-line {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #222;
+}
+
+.log-line span.timestamp {
+  color: #6c757d;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.log-line span.player-name {
+  color: #17a2b8;
+  font-weight: bold;
+}
+
+.log-line span.direction {
+  color: #fff;
+  margin: 0 5px;
+}
+
+.log-message-box {
+  background-color: #444;
+  padding: 5px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  font-family: Consolas, monospace;
+}
