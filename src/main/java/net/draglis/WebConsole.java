@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -15,6 +17,7 @@ public class WebConsole extends PluginBase {
 
     private static WebConsole instance;
     private ServerSocket serverSocket = null;
+    private final ExecutorService threadPool = Executors.newFixedThreadPool(2);
 
     @Override
     public void onEnable() {
@@ -80,11 +83,8 @@ public class WebConsole extends PluginBase {
     private void acceptConnections() {
         try {
             Socket connectionSocket = serverSocket.accept();
-            // Create new thread to handle client request
-            Thread connectionThread = new Thread(new Connection(connectionSocket, this.getDataFolder().getPath()));
-
-            // Start the connection thread
-            connectionThread.start();
+            // Submit the task to the thread pool
+            threadPool.submit(new Connection(connectionSocket, this.getDataFolder().getPath()));
         } catch (IOException e) {
             e.printStackTrace();
         }
